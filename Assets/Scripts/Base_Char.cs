@@ -44,52 +44,92 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Jump()
     {
-        // Al saltar
         if (Input.GetKeyDown("space") && isGrounded())
         {
-            body.velocity = new Vector2(body.velocity.x, jumpPower); // Asigna directamente la velocidad para evitar acumulación
-            isJumping = true;
-            jumpCounter = 0;
+            //body.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); // un lance para arriba 
+            body.velocity = new Vector2(body.velocity.x, jumpPower);
+            isJumping = true; // marcar que esta saltando
+            jumpCounter = 0; // tiempo de salto igual a serop
 
             if (body.velocity.y > 0 && isJumping)
             {
                 jumpCounter += Time.deltaTime;
-                if (jumpCounter > jumpTime)
-                {
-                    isJumping = false; // Detener el salto cuando se supera el tiempo máximo de salto
-                }
+
             }
 
-        }
-        // Mientras el jugador está subiendo y manteniendo el botón de salto
-        if (body.velocity.y > 0 && isJumping)
-        {
-            jumpCounter += Time.deltaTime;
+
+
+
             if (jumpCounter > jumpTime)
             {
                 isJumping = false; // Detener el salto cuando se supera el tiempo máximo de salto
+
             }
         }
 
-
-        // Si suelta el botón de salto antes de llegar a la altura máxima
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("Jump") && isJumping == true && body.velocity.y > 0)
         {
             isJumping = false;
-            if (body.velocity.y > 0)
-            {
-                // Aplica un multiplicador de caída rápida si se suelta el botón de salto
-                body.velocity += vecGravity * lowJumpMultiplier * Time.deltaTime;
-            }
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y * lowJumpMultiplier);
         }
-
-        // Si el personaje está cayendo
-        if (body.velocity.y < 0)
+        
+        if (body.velocity.y < 0 || isJumping == false)
         {
-            // Aplica un multiplicador mayor al caer para hacerlo más rápido
             body.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
         }
+        
+        
+        
+
+        // Si el personaje está cayendo
+
+    } 
+    // Al saltar
+    /*   if (Input.GetKeyDown("space") && isGrounded())
+       {
+           body.velocity = new Vector2(body.velocity.x, jumpPower); // Asigna directamente la velocidad para evitar acumulación
+           isJumping = true;
+           jumpCounter = 0;
+
+           if (body.velocity.y > 0 && isJumping)
+           {
+               jumpCounter += Time.deltaTime;
+               if (jumpCounter > jumpTime)
+               {
+                   isJumping = false; // Detener el salto cuando se supera el tiempo máximo de salto
+               }
+           }
+
+       }
+       // Mientras el jugador está subiendo y manteniendo el botón de salto
+       if (body.velocity.y > 0 && isJumping)
+       {
+           jumpCounter += Time.deltaTime;
+           if (jumpCounter > jumpTime)
+           {
+               isJumping = false; // Detener el salto cuando se supera el tiempo máximo de salto
+           }
+       }
+
+
+    // Si suelta el botón de salto antes de llegar a la altura máxima
+    if (Input.GetButtonUp("Jump"))
+    {
+        isJumping = false;
+        if (body.velocity.y > 0)
+        {
+            // Aplica un multiplicador de caída rápida si se suelta el botón de salto
+            body.velocity += vecGravity * lowJumpMultiplier * Time.deltaTime;
+        }
     }
+
+    // Si el personaje está cayendo
+    if (body.velocity.y < 0)
+    {
+        // Aplica un multiplicador mayor al caer para hacerlo más rápido
+        body.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
+    }
+} */
     bool isGrounded()
     {
         return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.8f, 0.3f), CapsuleDirection2D.Horizontal, 0, groundLayer);
@@ -119,3 +159,4 @@ public class CharacterMovement : MonoBehaviour
         WallSliding();
     }
 }
+

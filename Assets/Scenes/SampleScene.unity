@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 10272108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: -5.32, z: 0.03986089}
+  m_LocalPosition: {x: 0.32999995, y: -7.33, z: 0.03986089}
   m_LocalScale: {x: 117.87, y: 30.589191, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -408,8 +408,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0042079934, y: 0.037048522}
-  m_Size: {x: 0.13249916, y: 0.12821876}
+  m_Offset: {x: 0.0042079934, y: 0.029495198}
+  m_Size: {x: 0.13249916, y: 0.14332539}
   m_Direction: 0
 --- !u!1 &1632162380
 GameObject:
@@ -445,9 +445,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lerpAmount: 15
   jumpMultiplier: 4
-  jumpPower: 6
-  jumpTime: 30
-  fallMultiplier: 3
+  jumpPower: 10
+  jumpTime: 4
+  fallMultiplier: 10
   lowJumpMultiplier: 0.5
   groundCheck: {fileID: 826122049}
   wallCheck: {fileID: 1957710916}
@@ -709,7 +709,7 @@ Transform:
   m_GameObject: {fileID: 1957710913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 9.07, y: 0.64, z: 0.03986089}
+  m_LocalPosition: {x: 9.11, y: -1.37, z: 0.03986089}
   m_LocalScale: {x: 117.87, y: 30.589191, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Girl_Char : MonoBehaviour
+public class GirlMovement : CharacterMovement
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+        
     void Update()
     {
-        
+
     }
 }
