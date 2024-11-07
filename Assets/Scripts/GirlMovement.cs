@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class GirlMovement : CharacterMovement
-    {
+public class GirlMovement : CharacterMovement
+{
     [SerializeField] private float wallRaycastDistance = 0.9f;
-    
+    [SerializeField] private Transform _girlTransform;
+
     private bool isGrabbingWall = false;
     public bool hitRightWall;
-    public bool hitLefttWall;    
+    public bool hitLefttWall;
     public bool canWallJump;
     public float wallgrabBufferTime = 0.1f;
     public float wallgrabBufferCounter;
-        protected override void Start()
-        {
-            base.Start();  // Llama a la lógica Start() de CharacterMovement
-                           // Lógica adicional específica de GirlMovement, si es necesario
-        }
+
+
     protected override void Update()
     {
         base.Update();
@@ -28,20 +26,19 @@ using UnityEngine;
 
     private void WallGrab()
     {
-        hitRightWall = Physics2D.Raycast(transform.position, Vector2.right, wallRaycastDistance, groundLayer);
-        hitLefttWall = Physics2D.Raycast(transform.position, Vector2.left, wallRaycastDistance, groundLayer);
+        hitRightWall = Physics2D.Raycast(_girlTransform.position, Vector2.right, wallRaycastDistance, groundLayer);
+        hitLefttWall = Physics2D.Raycast(_girlTransform.position, Vector2.left, wallRaycastDistance, groundLayer);
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
             wallgrabBufferCounter = wallgrabBufferTime;
         }
-
         else
         {   
             wallgrabBufferCounter -= Time.deltaTime;
         }  
 
-        if (hitLefttWall == true || hitRightWall == true && wallgrabBufferCounter > 0f)
+        if ((hitLefttWall == true || hitRightWall == true) && wallgrabBufferCounter > 0f)
         {
             isGrabbingWall = true;
             body.constraints = RigidbodyConstraints2D.FreezePosition;
@@ -81,8 +78,8 @@ using UnityEngine;
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.left * wallRaycastDistance);
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * wallRaycastDistance);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(_girlTransform.position, transform.position + Vector3.left * wallRaycastDistance);
+        //Gizmos.DrawLine(_girlTransform.position, transform.position + Vector3.right * wallRaycastDistance);
     }
 }
