@@ -49,6 +49,9 @@ using UnityEngine;
             wallgrabBufferCounter = 0f;
             if (Input.GetButtonDown("Jump"))
             {
+                isGrabbingWall = false;
+                body.constraints = RigidbodyConstraints2D.None;
+                body.constraints = RigidbodyConstraints2D.FreezeRotation;
                 WallJump();
             }
         }
@@ -66,9 +69,7 @@ using UnityEngine;
 
     private void WallJump()
     {
-        isGrabbingWall = false;
-        body.constraints = RigidbodyConstraints2D.None;
-        body.constraints = RigidbodyConstraints2D.FreezeRotation;
+        
         if (hitLefttWall == true)
         {
             body.AddForce(Vector2.right * jumpPower, ForceMode2D.Impulse);
