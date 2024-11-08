@@ -7,7 +7,7 @@ public class GirlMovement : CharacterMovement
     [SerializeField] private float wallRaycastDistance = 0.9f;
     [SerializeField] private Transform _girlTransform;
 
-    private bool isGrabbingWall = false;
+    private bool isGrabbingWall;
     public bool hitRightWall;
     public bool hitLefttWall;
     public bool canWallJump;
@@ -15,11 +15,16 @@ public class GirlMovement : CharacterMovement
     public float wallgrabBufferCounter;
 
 
+    protected override void Start()
+    {
+        base.Start();
+        isGrabbingWall = false;
+    }
     protected override void Update()
     {
         base.Update();
         WallGrab();
-        OnDrawGizmos();
+        
         
     }
 
@@ -29,7 +34,7 @@ public class GirlMovement : CharacterMovement
         hitRightWall = Physics2D.Raycast(_girlTransform.position, Vector2.right, wallRaycastDistance, groundLayer);
         hitLefttWall = Physics2D.Raycast(_girlTransform.position, Vector2.left, wallRaycastDistance, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z))
         {
             wallgrabBufferCounter = wallgrabBufferTime;
         }
@@ -52,7 +57,7 @@ public class GirlMovement : CharacterMovement
                 WallJump();
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Z))
+        else if (Input.GetKey(KeyCode.Z))
         {
             isGrabbingWall = false;
             body.gravityScale = 2;
@@ -66,6 +71,7 @@ public class GirlMovement : CharacterMovement
 
     private void WallJump()
     {
+        if (isGrabbingWall == true)
         
         if (hitLefttWall == true)
         {
@@ -76,10 +82,5 @@ public class GirlMovement : CharacterMovement
             body.AddForce(Vector2.left * jumpPower, ForceMode2D.Impulse);
         }
     }
-    private void OnDrawGizmos()
-    {
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawLine(_girlTransform.position, transform.position + Vector3.left * wallRaycastDistance);
-        //Gizmos.DrawLine(_girlTransform.position, transform.position + Vector3.right * wallRaycastDistance);
-    }
+   
 }
