@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,12 +100,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_0
       rect:
         serializedVersion: 2
-        x: 50
+        x: 0
         y: 1280
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -121,12 +121,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_1
       rect:
         serializedVersion: 2
-        x: 370
+        x: 320
         y: 1280
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,12 +142,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_2
       rect:
         serializedVersion: 2
-        x: 680
+        x: 640
         y: 1280
-        width: 210
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,12 +163,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_3
       rect:
         serializedVersion: 2
-        x: 1030
+        x: 960
         y: 1280
-        width: 160
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_4
       rect:
         serializedVersion: 2
-        x: 1360
+        x: 1280
         y: 1280
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_5
       rect:
         serializedVersion: 2
-        x: 1680
+        x: 1600
         y: 1280
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,12 +226,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_6
       rect:
         serializedVersion: 2
-        x: 70
+        x: 0
         y: 960
-        width: 210
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -247,12 +247,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_7
       rect:
         serializedVersion: 2
-        x: 410
+        x: 320
         y: 960
-        width: 160
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -268,12 +268,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_8
       rect:
         serializedVersion: 2
-        x: 680
+        x: 640
         y: 960
-        width: 210
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -289,12 +289,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_9
       rect:
         serializedVersion: 2
-        x: 1010
+        x: 960
         y: 960
-        width: 190
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -310,12 +310,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_10
       rect:
         serializedVersion: 2
-        x: 1330
+        x: 1280
         y: 960
-        width: 190
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -331,12 +331,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_11
       rect:
         serializedVersion: 2
-        x: 1670
+        x: 1600
         y: 960
-        width: 160
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -352,12 +352,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_12
       rect:
         serializedVersion: 2
-        x: 80
+        x: 0
         y: 640
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -373,12 +373,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_13
       rect:
         serializedVersion: 2
-        x: 390
+        x: 320
         y: 640
-        width: 210
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -394,12 +394,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_14
       rect:
         serializedVersion: 2
-        x: 720
+        x: 640
         y: 640
-        width: 190
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -415,12 +415,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_15
       rect:
         serializedVersion: 2
-        x: 1040
+        x: 960
         y: 640
-        width: 190
-        height: 210
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -436,12 +436,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_16
       rect:
         serializedVersion: 2
-        x: 1370
+        x: 1280
         y: 640
-        width: 160
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -457,12 +457,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_17
       rect:
         serializedVersion: 2
-        x: 1650
+        x: 1600
         y: 640
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -478,12 +478,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_18
       rect:
         serializedVersion: 2
-        x: 40
+        x: 0
         y: 320
-        width: 210
-        height: 190
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -499,12 +499,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_19
       rect:
         serializedVersion: 2
-        x: 390
-        y: 330
-        width: 160
-        height: 220
+        x: 320
+        y: 320
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -520,12 +520,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_20
       rect:
         serializedVersion: 2
-        x: 690
-        y: 340
-        width: 190
-        height: 210
+        x: 640
+        y: 320
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -541,12 +541,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_21
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 330
-        width: 210
-        height: 200
+        x: 960
+        y: 320
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -562,12 +562,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_22
       rect:
         serializedVersion: 2
-        x: 1330
+        x: 1280
         y: 320
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -583,12 +583,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_23
       rect:
         serializedVersion: 2
-        x: 1680
+        x: 1600
         y: 320
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -604,12 +604,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_24
       rect:
         serializedVersion: 2
-        x: 70
+        x: 0
         y: 0
-        width: 210
-        height: 190
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -625,12 +625,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_25
       rect:
         serializedVersion: 2
-        x: 410
-        y: 10
-        width: 160
-        height: 220
+        x: 320
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -646,12 +646,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_26
       rect:
         serializedVersion: 2
-        x: 720
-        y: 20
-        width: 190
-        height: 210
+        x: 640
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -667,12 +667,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_27
       rect:
         serializedVersion: 2
-        x: 1030
-        y: 10
-        width: 210
-        height: 200
+        x: 960
+        y: 0
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -688,12 +688,12 @@ TextureImporter:
       name: MAIN_SPRITESHEET _01_28
       rect:
         serializedVersion: 2
-        x: 1360
+        x: 1280
         y: 0
-        width: 190
-        height: 220
+        width: 320
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

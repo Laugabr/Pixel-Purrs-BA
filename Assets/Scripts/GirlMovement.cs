@@ -6,7 +6,7 @@ public class GirlMovement : CharacterMovement
 {
     [SerializeField] private float wallRaycastDistance = 0.9f;
     [SerializeField] private Transform _girlTransform;
-
+    Animator _animator;
     private bool isGrabbingWall;
     public bool hitRightWall;
     public bool hitLefttWall;
@@ -24,11 +24,32 @@ public class GirlMovement : CharacterMovement
     {
         base.Update();
         WallGrab();
-        
+        Animator();
         
     }
 
-
+    public void Animator()
+    {
+        float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        _animator.SetFloat("movement", speedX * speed);
+        /* if (speedX < 0)
+         {
+             transform.localScale = new Vector3(-1,1,1);
+         }
+         if (speedX > 0)
+         {
+             transform.localScale = new Vector3(1,1,1);
+         }
+         */
+        if (isFacingRight)
+        {
+            animator.SetBool("Facing Right", isFacingRight);
+        }
+        if (isFacingRight == false)
+        {
+            animator.SetBool("Facing Right", isFacingRight = false);
+        }
+    }
     private void WallGrab()
     {
         hitRightWall = Physics2D.Raycast(_girlTransform.position, Vector2.right, wallRaycastDistance, groundLayer);

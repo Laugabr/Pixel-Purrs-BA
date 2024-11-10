@@ -11,6 +11,8 @@ public class CharacterMovement : MonoBehaviour
     protected float speed = 5f;
     protected float wallSlideSpeed = 0.9f;  // Velocidad de deslizamiento en paredes
     protected float moveInput;
+    protected bool isFacingRight;
+    public Animator animator;
     [SerializeField] protected float lerpAmount = 3f;
 
     [SerializeField] protected int jumpMultiplier;
@@ -30,8 +32,17 @@ public class CharacterMovement : MonoBehaviour
     Vector2 vecGravity;
     bool canJump;
 
+
+    [SerializeField] bool canDash;
+    [SerializeField] bool isDashing;
+    protected  float dashPower = 240f;
+    protected const float dashTime = 1f;
+    protected const float dashCooldown = .2f;
+    public bool dashFinished;
+    float dashCounter;
     protected bool isJumping;
     protected float jumpCounter;
+    float originalGravity;
 
 
     protected Rigidbody2D body;
@@ -43,6 +54,7 @@ public class CharacterMovement : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         body = GetComponent<Rigidbody2D>();
         HorizontalMovement();
+        isFacingRight = true;
     }
     public void HorizontalMovement() // Movimiento horizontal básico
     {
@@ -51,6 +63,19 @@ public class CharacterMovement : MonoBehaviour
         body.velocity = new Vector2(moveInput * speed, body.velocity.y);
     }
 
+    public virtual void FacingDirections()
+    {
+
+        // Cambia la dirección del personaje según el input
+        if (body.velocity.x < 0 && isFacingRight)
+        {
+            isFacingRight = false;
+        }
+        else if (body.velocity.x > 0 && isFacingRight == false)
+        {
+            isFacingRight = true;
+        }
+        }
 
 
     public virtual void Jump()
@@ -89,7 +114,7 @@ public class CharacterMovement : MonoBehaviour
         if (body.velocity.y > 0)
         {
             jumpCounter += Time.deltaTime;
-            body.velocity = new Vector2(hDrag * body.velocity.x, body.velocity.y);
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y);
             if (jumpCounter > jumpTime)
             {
                 isJumping = false; // Detener el salto cuando se supera el tiempo máximo de salto
@@ -117,7 +142,29 @@ public class CharacterMovement : MonoBehaviour
     }
     public bool isGrounded()
     {
-        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.8f, 0.04f), CapsuleDirection2D.Vertical, 0, groundLayer);
+        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.4f, 0.6f), CapsuleDirection2D.Vertical, 0, groundLayer);
+    }
+
+    public void Dash()
+    {
+        canDash = true;
+        
+        if (Input.GetKeyDown(KeyCode.X) && canDash == true)
+        {
+            canDash = false;
+            isDashing = true;
+            body.velocity = new Vector2(transform.localScale.x * dashPower * moveInput, 0);
+            dashCounter = Time.deltaTime;
+            
+            
+        }
+        if (dashCounter >= dashTime)
+        {
+            isDashing = false;
+            
+            isDashing = false;
+            dashFinished = true;
+        }
     }
 
 
@@ -129,8 +176,32 @@ public class CharacterMovement : MonoBehaviour
         {
             grounded = true;
         }
+        Dash();
+        FacingDirections();
+        Animator();
     }
-
+    public void Animator()
+    {
+        float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        animator.SetFloat("movement", speedX * speed);
+        /* if (speedX < 0)
+         {
+             transform.localScale = new Vector3(-1,1,1);
+         }
+         if (speedX > 0)
+         {
+             transform.localScale = new Vector3(1,1,1);
+         }
+         */
+        if (isFacingRight)
+        {
+            animator.SetBool("Facing Right", isFacingRight);
+        }
+        if (isFacingRight == false)
+        {
+            animator.SetBool("Facing Right", isFacingRight = false);
+        }
+    }
 }
     
     

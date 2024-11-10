@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterSwitch : MonoBehaviour
@@ -9,8 +10,9 @@ public class CharacterSwitch : MonoBehaviour
 
     public GameObject girl;
     public GameObject cat;
-
+    Rigidbody2D body;
     public bool girlIsActive = true;
+    CharacterMovement dashFinished;
     // Update is called once per frame
     void Update()
     {
@@ -24,8 +26,8 @@ public class CharacterSwitch : MonoBehaviour
     {
         if (girlIsActive == true)
         {
-            girlControler.enabled = false;
-            catControler.enabled = true;
+            
+            
             girlIsActive = false;
             girl.SetActive(false);  
             cat.SetActive(true);

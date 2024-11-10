@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CatMovement : CharacterMovement
 {
-    
+
+        public Animator animator;
+    public Transform catTransform;
         [SerializeField] bool canDJump = true;
 
          [SerializeField] private float wallRaycastDistance = 0.9f;
@@ -49,10 +52,33 @@ public class CatMovement : CharacterMovement
         
 
     }
+    private void Animator()
+    {
+        float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        animator.SetFloat("movement", speedX * speed);
+        /* if (speedX < 0)
+         {
+             transform.localScale = new Vector3(-1,1,1);
+         }
+         if (speedX > 0)
+         {
+             transform.localScale = new Vector3(1,1,1);
+         }
+         */
+        if (isFacingRight)
+        {
+            animator.SetBool("Facing Right", isFacingRight);
+        }
+        if (isFacingRight)
+        {
+            animator.SetBool("Facing Right", isFacingRight = false);
+        }
+    }
     protected override void Update()
     {
         base.Update();
         Jump();
+        Animator();
     }
 
 

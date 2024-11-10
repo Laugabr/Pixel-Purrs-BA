@@ -121,6 +121,8 @@ MonoBehaviour:
   jumpTime: 4
   fallMultiplier: 10
   lowJumpMultiplier: 0.5
+  doubleJump: 0
+  grounded: 0
   _jumpBufferTime: 0
   _jumpBufferCounter: 0
   hDrag: 0
@@ -132,6 +134,9 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
+  canDash: 0
+  isDashing: 0
+  dashFinished: 0
 --- !u!212 &3956892846730435025
 SpriteRenderer:
   m_ObjectHideFlags: 0
