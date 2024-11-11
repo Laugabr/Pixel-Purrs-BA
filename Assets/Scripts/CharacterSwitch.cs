@@ -31,6 +31,8 @@ public class CharacterSwitch : MonoBehaviour
             girlIsActive = false;
             girl.SetActive(false);  
             cat.SetActive(true);
+            girlControler.enabled = false;
+            catControler.enabled = true;
         }
         else
         {

@@ -6,7 +6,8 @@ public class GirlMovement : CharacterMovement
 {
     [SerializeField] private float wallRaycastDistance = 0.9f;
     [SerializeField] private Transform _girlTransform;
-    Animator _animator;
+    public Animator _animator;
+    public SpriteRenderer _spriteRenderer;
     private bool isGrabbingWall;
     public bool hitRightWall;
     public bool hitLefttWall;
@@ -31,24 +32,32 @@ public class GirlMovement : CharacterMovement
     public void Animator()
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+
         _animator.SetFloat("movement", speedX * speed);
-        /* if (speedX < 0)
-         {
-             transform.localScale = new Vector3(-1,1,1);
-         }
-         if (speedX > 0)
-         {
-             transform.localScale = new Vector3(1,1,1);
-         }
-         */
+
         if (isFacingRight)
         {
-            animator.SetBool("Facing Right", isFacingRight);
+            _animator.SetBool("Facing Right", isFacingRight);
+            Debug.Log("Cambia de direccion a 1");
         }
-        if (isFacingRight == false)
+        else if (isFacingRight == false)
         {
-            animator.SetBool("Facing Right", isFacingRight = false);
+            _animator.SetBool("Facing Right", isFacingRight = false);
+            Debug.Log("Cambia de direccion a 2");
         }
+        _animator.SetBool("grounded", isGrounded());
+        _animator.SetFloat("yVelocity", body.velocity.y);
+        _animator.SetFloat("xVelocity", body.velocity.x);
+        if (isGrounded() == false)
+        {
+            if (isFacingRight)
+            _spriteRenderer.flipX = false;
+            if(!isFacingRight)
+            {
+                _spriteRenderer.flipX = true;
+            }
+        }
+
     }
     private void WallGrab()
     {

@@ -12,7 +12,7 @@ public class CharacterMovement : MonoBehaviour
     protected float wallSlideSpeed = 0.9f;  // Velocidad de deslizamiento en paredes
     protected float moveInput;
     protected bool isFacingRight;
-    public Animator animator;
+    
     [SerializeField] protected float lerpAmount = 3f;
 
     [SerializeField] protected int jumpMultiplier;
@@ -70,12 +70,14 @@ public class CharacterMovement : MonoBehaviour
         if (body.velocity.x < 0 && isFacingRight)
         {
             isFacingRight = false;
+            Debug.Log("Cambia de direccion a 3");
         }
         else if (body.velocity.x > 0 && isFacingRight == false)
         {
             isFacingRight = true;
+            Debug.Log("Cambia de direccion a 4");
         }
-        }
+    }
 
 
     public virtual void Jump()
@@ -178,30 +180,9 @@ public class CharacterMovement : MonoBehaviour
         }
         Dash();
         FacingDirections();
-        Animator();
+        
     }
-    public void Animator()
-    {
-        float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        animator.SetFloat("movement", speedX * speed);
-        /* if (speedX < 0)
-         {
-             transform.localScale = new Vector3(-1,1,1);
-         }
-         if (speedX > 0)
-         {
-             transform.localScale = new Vector3(1,1,1);
-         }
-         */
-        if (isFacingRight)
-        {
-            animator.SetBool("Facing Right", isFacingRight);
-        }
-        if (isFacingRight == false)
-        {
-            animator.SetBool("Facing Right", isFacingRight = false);
-        }
-    }
+    
 }
     
     

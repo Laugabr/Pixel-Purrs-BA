@@ -6,12 +6,12 @@ using UnityEngine;
 public class CatMovement : CharacterMovement
 {
 
-        public Animator animator;
-    public Transform catTransform;
+        public Animator _animator;
+        public Transform catTransform;
         [SerializeField] bool canDJump = true;
 
-         [SerializeField] private float wallRaycastDistance = 0.9f;
-         [SerializeField] private Transform _catTransform;
+        [SerializeField] private float wallRaycastDistance = 0.9f;
+        [SerializeField] private Transform _catTransform;
         public bool hitFloor;
 
    
@@ -52,27 +52,26 @@ public class CatMovement : CharacterMovement
         
 
     }
-    private void Animator()
+    public void Animator()
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        animator.SetFloat("movement", speedX * speed);
-        /* if (speedX < 0)
-         {
-             transform.localScale = new Vector3(-1,1,1);
-         }
-         if (speedX > 0)
-         {
-             transform.localScale = new Vector3(1,1,1);
-         }
-         */
+
+        _animator.SetFloat("movement", speedX * speed);
+
         if (isFacingRight)
         {
-            animator.SetBool("Facing Right", isFacingRight);
+            _animator.SetBool("Facing Right", isFacingRight);
+            
         }
-        if (isFacingRight)
+        else if (isFacingRight == false)
         {
-            animator.SetBool("Facing Right", isFacingRight = false);
+            _animator.SetBool("Facing Right", isFacingRight = false);
+            
         }
+        _animator.SetBool("grounded", isGrounded());
+        _animator.SetBool("grounded", isGrounded());
+        _animator.SetFloat("yVelocity", body.velocity.y);
+        _animator.SetFloat("xVelocity", body.velocity.x);
     }
     protected override void Update()
     {

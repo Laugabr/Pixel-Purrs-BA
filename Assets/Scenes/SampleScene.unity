@@ -6825,7 +6825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f819784db77a22f40bcc20309fd5bbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1908535038}
   lerpAmount: 12
   jumpMultiplier: 3
   jumpPower: 14
@@ -6848,7 +6847,7 @@ MonoBehaviour:
   canDash: 0
   isDashing: 0
   dashFinished: 0
-  animator: {fileID: 1908535038}
+  _animator: {fileID: 1908535038}
   catTransform: {fileID: 0}
   canDJump: 1
   wallRaycastDistance: 0.9
@@ -7345,7 +7344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9425e3983afa643b5e76379aa9eff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   lerpAmount: 10
   jumpMultiplier: 4
   jumpPower: 9
@@ -7370,6 +7368,7 @@ MonoBehaviour:
   dashFinished: 0
   wallRaycastDistance: 0.9
   _girlTransform: {fileID: 0}
+  _animator: {fileID: 0}
   hitRightWall: 0
   hitLefttWall: 0
   canWallJump: 0
@@ -7866,6 +7865,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4490642136228146944, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4958752149971955131, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
       propertyPath: hDrag
       value: 0.5
@@ -7874,6 +7877,10 @@ PrefabInstance:
       propertyPath: jumpTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4958752149971955131, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1632162393}
     - target: {fileID: 4958752149971955131, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
       propertyPath: jumpPower
       value: 14
