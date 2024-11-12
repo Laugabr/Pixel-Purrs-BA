@@ -72,6 +72,8 @@ public class CatMovement : CharacterMovement
         _animator.SetBool("grounded", isGrounded());
         _animator.SetFloat("yVelocity", body.velocity.y);
         _animator.SetFloat("xVelocity", body.velocity.x);
+        _animator.SetBool("isDashing", isDashing);
+
     }
     protected override void Update()
     {

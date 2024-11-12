@@ -7,21 +7,27 @@ public class CharacterSwitch : MonoBehaviour
 {
     public GirlMovement girlControler;
     public CatMovement catControler;
-
+    public CharacterMovement dashingTime;
     public GameObject girl;
     public GameObject cat;
     Rigidbody2D body;
     public bool girlIsActive = true;
-    CharacterMovement dashFinished;
+    CharacterMovement charMovement;
+
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            SwitchCharacter();
-        }
+        girlControler.enabled = true;
+        catControler.enabled = false;
+        girlIsActive = true;
+        girl.SetActive(true);
+        cat.SetActive(false);
     }
 
+    private IEnumerator ChangeCharacter()
+    {
+        yield return new WaitForSeconds(charMovement.dashingTime);
+    }
     public void SwitchCharacter()
     {
         if (girlIsActive == true)

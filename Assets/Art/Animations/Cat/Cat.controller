@@ -12,7 +12,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7958086019337906095}
@@ -125,7 +125,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -464604462789854216}
@@ -175,7 +175,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7958086019337906095}
@@ -203,7 +203,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -464604462789854216}
@@ -262,7 +262,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7958086019337906095}
@@ -290,7 +290,7 @@ AnimatorStateTransition:
     m_ConditionEvent: grounded
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2701910451935973028}
@@ -321,7 +321,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: -0.001
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1648904590483271598}
@@ -346,7 +346,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2701910451935973028}
@@ -406,7 +406,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Facing RightM
+  - m_Name: Facing Right
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -426,6 +426,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: xVelocity
     m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: isDashing
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -455,7 +461,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7958086019337906095}
@@ -486,7 +492,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0.001
   - m_ConditionMode: 1
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2701910451935973028}
@@ -511,7 +517,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -464604462789854216}
@@ -539,7 +545,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -464604462789854216}
@@ -623,7 +629,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1648904590483271598}
@@ -779,7 +785,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0.001
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1648904590483271598}
@@ -838,7 +844,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0.001
   - m_ConditionMode: 1
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2701910451935973028}
@@ -866,7 +872,7 @@ AnimatorStateTransition:
     m_ConditionEvent: grounded
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1648904590483271598}
@@ -894,7 +900,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -464604462789854216}
@@ -922,7 +928,7 @@ AnimatorStateTransition:
     m_ConditionEvent: movement
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Facing RightM
+    m_ConditionEvent: Facing Right
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7958086019337906095}

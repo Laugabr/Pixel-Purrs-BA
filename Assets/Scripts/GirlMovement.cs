@@ -14,12 +14,11 @@ public class GirlMovement : CharacterMovement
     public bool canWallJump;
     public float wallgrabBufferTime = 0.1f;
     public float wallgrabBufferCounter;
-
-
+    
     protected override void Start()
     {
         base.Start();
-        isGrabbingWall = false;
+        isGrabbingWall = false;        
     }
     protected override void Update()
     {
@@ -34,31 +33,26 @@ public class GirlMovement : CharacterMovement
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
         _animator.SetFloat("movement", speedX * speed);
+        _animator.SetBool("startedDash", popoDashi);
+        _animator.SetBool("grounded", isGrounded());
+        _animator.SetFloat("yVelocity", body.velocity.y);
+        _animator.SetFloat("xVelocity", body.velocity.x);
+        _animator.SetBool("isDashing", isDashing);
+
 
         if (isFacingRight)
         {
             _animator.SetBool("Facing Right", isFacingRight);
-            Debug.Log("Cambia de direccion a 1");
         }
         else if (isFacingRight == false)
         {
             _animator.SetBool("Facing Right", isFacingRight = false);
-            Debug.Log("Cambia de direccion a 2");
         }
-        _animator.SetBool("grounded", isGrounded());
-        _animator.SetFloat("yVelocity", body.velocity.y);
-        _animator.SetFloat("xVelocity", body.velocity.x);
-        if (isGrounded() == false)
-        {
-            if (isFacingRight)
-            _spriteRenderer.flipX = false;
-            if(!isFacingRight)
-            {
-                _spriteRenderer.flipX = true;
-            }
-        }
-
+        
+        
     }
+
+    
     private void WallGrab()
     {
         hitRightWall = Physics2D.Raycast(_girlTransform.position, Vector2.right, wallRaycastDistance, groundLayer);

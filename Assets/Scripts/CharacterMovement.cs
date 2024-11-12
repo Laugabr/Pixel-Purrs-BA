@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
@@ -32,14 +33,19 @@ public class CharacterMovement : MonoBehaviour
     Vector2 vecGravity;
     bool canJump;
 
+    protected bool popoDashi;
+    CharacterSwitch charSwitch;
 
-    [SerializeField] bool canDash;
-    [SerializeField] bool isDashing;
-    protected  float dashPower = 240f;
-    protected const float dashTime = 1f;
-    protected const float dashCooldown = .2f;
-    public bool dashFinished;
-    float dashCounter;
+    [SerializeField] public bool canDash;
+    [SerializeField] public  bool isDashing;
+    protected float dashingVelocity = 20f;
+    public float dashingTime = .1f;
+    private Vector2 _dashingDir;
+   // public TrailRenderer trailRenderer;
+   
+
+
+
     protected bool isJumping;
     protected float jumpCounter;
     float originalGravity;
@@ -55,6 +61,7 @@ public class CharacterMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         HorizontalMovement();
         isFacingRight = true;
+        canDash = true;
     }
     public void HorizontalMovement() // Movimiento horizontal básico
     {
@@ -97,17 +104,16 @@ public class CharacterMovement : MonoBehaviour
             canJump = false;
             body.velocity = new Vector2(body.velocity.x, 0);
             //body.velocity = new Vector2(body.velocity.x, jumpPower);
-
-            if (doubleJump)
-            {
-                doubleJump = !doubleJump;
-            }
             body.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); // un lance para arriba 
-
             isJumping = true; // marcar que esta saltando
             jumpCounter = 0; // tiempo de salto igual a serop
             _jumpBufferCounter = 0f;
+            if (doubleJump)
+            {
+                doubleJump = false;
+            }
         }
+
         if (Input.GetButtonUp("Jump"))
         {
             isJumping = false;
@@ -140,35 +146,12 @@ public class CharacterMovement : MonoBehaviour
             body.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
         }
 
-
     }
+    
     public bool isGrounded()
     {
         return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.4f, 0.6f), CapsuleDirection2D.Vertical, 0, groundLayer);
     }
-
-    public void Dash()
-    {
-        canDash = true;
-        
-        if (Input.GetKeyDown(KeyCode.X) && canDash == true)
-        {
-            canDash = false;
-            isDashing = true;
-            body.velocity = new Vector2(transform.localScale.x * dashPower * moveInput, 0);
-            dashCounter = Time.deltaTime;
-            
-            
-        }
-        if (dashCounter >= dashTime)
-        {
-            isDashing = false;
-            
-            isDashing = false;
-            dashFinished = true;
-        }
-    }
-
 
     protected virtual void Update()
     {
@@ -179,10 +162,58 @@ public class CharacterMovement : MonoBehaviour
             grounded = true;
         }
         Dash();
+                
         FacingDirections();
         
     }
-    
+
+    public void Dash()
+    {
+        var dashInput = Input.GetButtonDown("Dash");
+        if (dashInput && canDash)
+        {
+            isDashing = true;
+            canDash = false;
+            popoDashi = true;
+          //  trailRenderer.emitting = true;
+            _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") );
+
+            if (_dashingDir == new Vector2(0,0))
+            {
+                if (isFacingRight == true)
+                {
+                    _dashingDir = new Vector2(1, 0);
+                }
+                if (isFacingRight == false)
+                {
+                    _dashingDir = new Vector2(-1, 0);
+                }
+                }
+
+            StartCoroutine(StopDashing());
+        }
+
+        if (isDashing)
+        {
+            body.velocity = _dashingDir.normalized * dashingVelocity;
+            popoDashi = false;
+            return;
+        }
+        if (isGrounded())
+        {
+            canDash = true;
+        }   
+    }
+    private IEnumerator StopDashing()
+    {
+
+        yield return new WaitForSeconds(dashingTime); //esperamos a que pase la duracion del dash
+        isDashing = false; //que pasa despues de ese tiempo
+        //trailRenderer.emitting = false;
+    }
+
+
+
 }
     
     
