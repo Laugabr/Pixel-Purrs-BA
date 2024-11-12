@@ -6836,7 +6836,7 @@ MonoBehaviour:
   _jumpBufferTime: 0.1
   _jumpBufferCounter: 0
   hDrag: 0.5
-  groundCheck: {fileID: 974083006}
+  groundCheck: {fileID: 0}
   wallCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -6847,7 +6847,6 @@ MonoBehaviour:
   canDash: 0
   isDashing: 0
   dashingTime: 0.2
-  trailRenderer: {fileID: 1908535041}
   _animator: {fileID: 1908535038}
   catTransform: {fileID: 0}
   canDJump: 1
@@ -6888,11 +6887,6 @@ MonoBehaviour:
   girl: {fileID: 764599318}
   cat: {fileID: 1908535034}
   girlIsActive: 1
---- !u!4 &974083006 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 501380695844561130, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
-  m_PrefabInstance: {fileID: 3103533864595151300}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1599775446
 GameObject:
   m_ObjectHideFlags: 0
@@ -7369,7 +7363,6 @@ MonoBehaviour:
   canDash: 0
   isDashing: 0
   dashingTime: 0.2
-  trailRenderer: {fileID: 0}
   wallRaycastDistance: 0.9
   _girlTransform: {fileID: 0}
   _animator: {fileID: 0}
@@ -8100,13 +8093,17 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3348046629084313197, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4063174059190308068, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4063174059190308068, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4490642136228146944, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
       propertyPath: m_FlipX
