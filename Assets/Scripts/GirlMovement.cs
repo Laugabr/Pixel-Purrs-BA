@@ -14,11 +14,12 @@ public class GirlMovement : CharacterMovement
     public bool canWallJump;
     public float wallgrabBufferTime = 0.1f;
     public float wallgrabBufferCounter;
-    
+   
     protected override void Start()
     {
         base.Start();
-        isGrabbingWall = false;        
+        isGrabbingWall = false;      
+        _girlTransform.rotation = Quaternion.Euler(0f,0f,0f);
     }
     protected override void Update()
     {
@@ -33,13 +34,11 @@ public class GirlMovement : CharacterMovement
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
         _animator.SetFloat("movement", speedX * speed);
-        _animator.SetBool("startedDash", popoDashi);
+        _animator.SetBool("startedDash", startDash);
         _animator.SetBool("grounded", isGrounded());
         _animator.SetFloat("yVelocity", body.velocity.y);
         _animator.SetFloat("xVelocity", body.velocity.x);
         _animator.SetBool("isDashing", isDashing);
-
-
         if (isFacingRight)
         {
             _animator.SetBool("Facing Right", isFacingRight);
@@ -52,7 +51,21 @@ public class GirlMovement : CharacterMovement
         
     }
 
-    
+
+    private void WallGrab()
+    {
+        if (!isGrabbingWall)
+        {
+            return;
+        }
+
+
+
+    }
+
+
+
+    /*
     private void WallGrab()
     {
         hitRightWall = Physics2D.Raycast(_girlTransform.position, Vector2.right, wallRaycastDistance, groundLayer);
@@ -70,7 +83,7 @@ public class GirlMovement : CharacterMovement
         if ((hitLefttWall == true || hitRightWall == true) && wallgrabBufferCounter > 0f)
         {
             isGrabbingWall = true;
-            body.constraints = RigidbodyConstraints2D.FreezePosition;
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y * Input.GetAxis("Vertical"));
             canWallJump = true;
             wallgrabBufferCounter = 0f;
             if (Input.GetButtonDown("Jump"))
@@ -92,7 +105,7 @@ public class GirlMovement : CharacterMovement
         // Si hay una pared a la izquierda o derecha y el jugador presiona "Z", se agarra
 
     }
-
+    */
     private void WallJump()
     {
         if (isGrabbingWall == true)

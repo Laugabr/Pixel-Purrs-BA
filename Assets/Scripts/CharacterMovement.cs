@@ -33,24 +33,27 @@ public class CharacterMovement : MonoBehaviour
     Vector2 vecGravity;
     bool canJump;
 
-    protected bool popoDashi;
-    CharacterSwitch charSwitch;
+    protected bool startDash;
 
     [SerializeField] public bool canDash;
     [SerializeField] public  bool isDashing;
     protected float dashingVelocity = 20f;
     public float dashingTime = .1f;
     private Vector2 _dashingDir;
-   // public TrailRenderer trailRenderer;
-   
 
+    public CharacterSwitch switchChar;
 
+    // public TrailRenderer trailRenderer;
+
+    public bool finishedDashing;
+
+    public CharacterSwitch SwitchCharacter;
 
     protected bool isJumping;
     protected float jumpCounter;
     float originalGravity;
 
-
+    protected Transform transfo;
     protected Rigidbody2D body;
     bool isTouchingWall;
     protected virtual void Start()
@@ -62,6 +65,7 @@ public class CharacterMovement : MonoBehaviour
         HorizontalMovement();
         isFacingRight = true;
         canDash = true;
+        SwitchCharacter = new CharacterSwitch();
     }
     public void HorizontalMovement() // Movimiento horizontal básico
     {
@@ -155,6 +159,7 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void Update()
     {
+
         Jump();
         HorizontalMovement();
         if (isGrounded() == true)
@@ -170,11 +175,12 @@ public class CharacterMovement : MonoBehaviour
     public void Dash()
     {
         var dashInput = Input.GetButtonDown("Dash");
+        finishedDashing = false;
         if (dashInput && canDash)
         {
-            isDashing = true;
+            isDashing = true;   
             canDash = false;
-            popoDashi = true;
+            startDash = true;
           //  trailRenderer.emitting = true;
             _dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") );
 
@@ -196,7 +202,7 @@ public class CharacterMovement : MonoBehaviour
         if (isDashing)
         {
             body.velocity = _dashingDir.normalized * dashingVelocity;
-            popoDashi = false;
+            startDash = false;
             return;
         }
         if (isGrounded())
@@ -207,9 +213,12 @@ public class CharacterMovement : MonoBehaviour
     private IEnumerator StopDashing()
     {
 
-        yield return new WaitForSeconds(dashingTime); //esperamos a que pase la duracion del dash
+        yield return new WaitForSeconds(0.2f); //esperamos a que pase la duracion del dash
         isDashing = false; //que pasa despues de ese tiempo
+        finishedDashing = true;
+        GetComponent<CharacterSwitch>().SwitchCharacter(); 
         //trailRenderer.emitting = false;
+       ;
     }
 
 

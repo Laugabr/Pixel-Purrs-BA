@@ -7,12 +7,10 @@ public class CatMovement : CharacterMovement
 {
 
         public Animator _animator;
-        public Transform catTransform;
+        [SerializeField] Transform _catTransform;
         [SerializeField] bool canDJump = true;
-
-        [SerializeField] private float wallRaycastDistance = 0.9f;
-        [SerializeField] private Transform _catTransform;
-        public bool hitFloor;
+            [SerializeField] private float wallRaycastDistance = 0.9f;
+    public bool hitFloor;
 
    
     /*  private void DoubleJump()
@@ -48,31 +46,28 @@ public class CatMovement : CharacterMovement
         {
             doubleJump = false;
         }
-        
-        
-
     }
     public void Animator()
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
         _animator.SetFloat("movement", speedX * speed);
-
-        if (isFacingRight)
-        {
-            _animator.SetBool("Facing Right", isFacingRight);
-            
-        }
-        else if (isFacingRight == false)
-        {
-            _animator.SetBool("Facing Right", isFacingRight = false);
-            
-        }
-        _animator.SetBool("grounded", isGrounded());
+        _animator.SetBool("startedDash", startDash);
         _animator.SetBool("grounded", isGrounded());
         _animator.SetFloat("yVelocity", body.velocity.y);
         _animator.SetFloat("xVelocity", body.velocity.x);
         _animator.SetBool("isDashing", isDashing);
+
+
+        if (isFacingRight)
+        {
+            _animator.SetBool("Facing Right", isFacingRight);
+        }
+        else if (isFacingRight == false)
+        {
+            _animator.SetBool("Facing Right", isFacingRight = false);
+        }
+
 
     }
     protected override void Update()
@@ -82,7 +77,11 @@ public class CatMovement : CharacterMovement
         Animator();
     }
 
-
+    private void Start()
+    {
+        base.Start();
+        _catTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
 
 
 }
