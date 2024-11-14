@@ -5,7 +5,7 @@ using UnityEngine;
 public class GirlMovement : CharacterMovement
 {
     [SerializeField] private float wallRaycastDistance = 0.9f;
-    [SerializeField] private Transform _girlTransform;
+    public Transform _girlTransform;
     public Animator _animator;
     public SpriteRenderer _spriteRenderer;
     private bool isGrabbingWall;
@@ -14,7 +14,7 @@ public class GirlMovement : CharacterMovement
     public bool canWallJump;
     public float wallgrabBufferTime = 0.1f;
     public float wallgrabBufferCounter;
-   
+    public CharacterHealth charHealth;
     protected override void Start()
     {
         base.Start();
@@ -47,7 +47,7 @@ public class GirlMovement : CharacterMovement
         {
             _animator.SetBool("Facing Right", isFacingRight = false);
         }
-        
+        _animator.SetBool("isAlive", charHealth.isAlive);
         
     }
 

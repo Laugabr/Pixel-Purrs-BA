@@ -65,7 +65,7 @@ public class CharacterMovement : MonoBehaviour
         HorizontalMovement();
         isFacingRight = true;
         canDash = true;
-        SwitchCharacter = new CharacterSwitch();
+    
     }
     public void HorizontalMovement() // Movimiento horizontal básico
     {

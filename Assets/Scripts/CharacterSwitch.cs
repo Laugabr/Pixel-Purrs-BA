@@ -10,11 +10,13 @@ public class CharacterSwitch : MonoBehaviour
     public CharacterMovement dashingTime;
     public GameObject girl;
     public GameObject cat;
-    public bool girlIsActive = true;
+    public bool girlIsActive;
     CharacterMovement charMovement;
     private float dashDuration;
     public CharacterMovement finishedDashing;
     public CharacterMovement startedDash;
+    public Transform girlTransform;
+    public Transform catTransform;
     // Update is called once per frame
     private void Start()
     {
@@ -50,6 +52,7 @@ public class CharacterSwitch : MonoBehaviour
             cat.SetActive(true);
             girlControler.enabled = false;
             catControler.enabled = true;
+            ResetRotation();
         }
         else
         {
@@ -58,6 +61,16 @@ public class CharacterSwitch : MonoBehaviour
             girlIsActive = true;
             girl.SetActive(true);
             cat.SetActive(false);
+            ResetRotation();
         }
+ 
+    }
+
+
+    private void ResetRotation()
+    {
+        girlTransform.rotation = Quaternion.identity; // Resetea la rotación a (0,0,0)
+        catTransform.rotation = Quaternion.identity; // Resetea la rotación a (0,0,0)
+
     }
 }

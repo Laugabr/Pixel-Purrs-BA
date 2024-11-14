@@ -77,11 +77,7 @@ public class CatMovement : CharacterMovement
         Animator();
     }
 
-    private void Start()
-    {
-        base.Start();
-        _catTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    }
+    
 
 
 }
