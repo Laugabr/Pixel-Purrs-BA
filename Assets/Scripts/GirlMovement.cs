@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GirlMovement : CharacterMovement
 {
-    [SerializeField] private float wallRaycastDistance = 0.9f;
     public Transform _girlTransform;
     public Animator _animator;
     public SpriteRenderer _spriteRenderer;
@@ -15,20 +14,32 @@ public class GirlMovement : CharacterMovement
     public float wallgrabBufferTime = 0.1f;
     public float wallgrabBufferCounter;
     public CharacterHealth charHealth;
+    private bool isAlivv;
+    bool _isMovementEnabled;
     protected override void Start()
     {
         base.Start();
+        _isMovementEnabled = true;
+        charHealth.isAlive = true;
+        charHealth = gameObject.GetComponent<CharacterHealth>();
+
         isGrabbingWall = false;      
         _girlTransform.rotation = Quaternion.Euler(0f,0f,0f);
     }
     protected override void Update()
     {
         base.Update();
+       if (_isMovementEnabled)
+        {
+            HorizontalMovement();
+            Jump();
+            Dash();
+        } 
         WallGrab();
         Animator();
-        
+        isAlivv = charHealth.isAlive;
     }
-
+    
     public void Animator()
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
@@ -50,7 +61,16 @@ public class GirlMovement : CharacterMovement
         _animator.SetBool("isAlive", charHealth.isAlive);
         
     }
+    public void DisableMovement()
+    {
+        _isMovementEnabled = false;
+        body.velocity = Vector2.zero; // Para asegurarse de que esté quieto
+    }
 
+    public void EnableMovement()
+    {
+        _isMovementEnabled = true;
+    }
 
     private void WallGrab()
     {

@@ -10,66 +10,54 @@ public class CharacterHealth : MonoBehaviour
     public float respawnTime = 5f;
     Transform _character;
     Vector2 startPos;
+    Vector2 currentPos;
     public GameObject girl;
     public GameObject cat;
     public GirlMovement girlControler;
     public CatMovement catControler;
     public CharacterSwitch charSwitch;
+    Rigidbody2D body;
 
-
-
+   
     // Update is called once per frame
     private void Start()
     {
         isAlive = true;
         startPos = transform.position;
         _character = GetComponent<Transform>();
+        body = GetComponent<Rigidbody2D>();
     }
-    void Update()
-    {
-        if (isTouchingSpikes())
-        {
-            Death();
-        }
-    }
+    
 
     private void Death()
     {
         isAlive = false;
-        catControler.enabled = false;
-        girlControler.enabled = false;
+        StartCoroutine(RespawnT());
         
-        StartCoroutine(RespawnTime(2f));
     }
 
-    private IEnumerator RespawnTime(float duration)
+    private IEnumerator RespawnT()
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(respawnTime);
         Respawn();
     }
-
-    private void Respawn()
+    public virtual void Respawn()
     {
-        if (charSwitch.girlIsActive == true)
-        {
-            girlControler.enabled = true;
-        }
-        if (charSwitch.girlIsActive == false)
-            if (charSwitch.girlIsActive == false)
-            {
-                catControler.enabled = true;
-            }
+       
         isAlive = true;
         transform.position = startPos;
     }
 
 
-    private bool isTouchingSpikes()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        return Physics2D.OverlapCapsule(spikesCheck.position, new Vector2(0.5f, 1f), CapsuleDirection2D.Vertical, 0, spikesLayer);
+        if (collision.CompareTag("Spikes")) 
+        {
+            body.velocity.x = 0f;
+            Death();
+        }
     }
 
-    
 
 
 }

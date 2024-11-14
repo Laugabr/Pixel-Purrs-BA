@@ -59,13 +59,11 @@ public class CharacterMovement : MonoBehaviour
     protected virtual void Start()
     {
         vecGravity = new Vector2(0, -Physics2D.gravity.y);
-
         float moveInput = Input.GetAxis("Horizontal");
         body = GetComponent<Rigidbody2D>();
         HorizontalMovement();
         isFacingRight = true;
         canDash = true;
-    
     }
     public void HorizontalMovement() // Movimiento horizontal básico
     {

@@ -5,14 +5,23 @@ using UnityEngine;
 
 public class CatMovement : CharacterMovement
 {
+    private bool isAlivv;
 
-        public Animator _animator;
-        [SerializeField] Transform _catTransform;
-        [SerializeField] bool canDJump = true;
-            [SerializeField] private float wallRaycastDistance = 0.9f;
+    public Animator _animator;
+    [SerializeField] Transform _catTransform;
+    [SerializeField] bool canDJump = true;
+    [SerializeField] private float wallRaycastDistance = 0.9f;
     public bool hitFloor;
+    public CharacterHealth charHealth;
+    private bool _isMovementEnabled;
+    protected override void Start()
+    {
+        base.Start();
+        _isMovementEnabled = true;
+        charHealth.isAlive = true;
+    }
 
-   
+
     /*  private void DoubleJump()
       {
           hitFloor = Physics2D.Raycast(_catTransform.position, Vector2.down, wallRaycastDistance, groundLayer);
@@ -47,6 +56,18 @@ public class CatMovement : CharacterMovement
             doubleJump = false;
         }
     }
+    public void DisableMovement()
+    {
+        _isMovementEnabled = false;
+        body.velocity = Vector2.zero; // Para asegurarse de que esté quieto
+    }
+
+    public void EnableMovement()
+    {
+        _isMovementEnabled = true;
+    }
+
+
     public void Animator()
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
@@ -57,8 +78,6 @@ public class CatMovement : CharacterMovement
         _animator.SetFloat("yVelocity", body.velocity.y);
         _animator.SetFloat("xVelocity", body.velocity.x);
         _animator.SetBool("isDashing", isDashing);
-
-
         if (isFacingRight)
         {
             _animator.SetBool("Facing Right", isFacingRight);
@@ -67,17 +86,23 @@ public class CatMovement : CharacterMovement
         {
             _animator.SetBool("Facing Right", isFacingRight = false);
         }
-
+        _animator.SetBool("isAlive", charHealth.isAlive);
 
     }
     protected override void Update()
     {
         base.Update();
-        Jump();
+        if (_isMovementEnabled)
+        {
+            HorizontalMovement();
+            Jump();
+            Dash();
+        }
         Animator();
+        isAlivv = charHealth.isAlive;
+
     }
 
-    
 
 
 }

@@ -10,7 +10,7 @@ public class CharacterSwitch : MonoBehaviour
     public CharacterMovement dashingTime;
     public GameObject girl;
     public GameObject cat;
-    public bool girlIsActive;
+    public bool girlIsActive = true;
     CharacterMovement charMovement;
     private float dashDuration;
     public CharacterMovement finishedDashing;
@@ -20,6 +20,7 @@ public class CharacterSwitch : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
+
         girlControler.enabled = true;
         catControler.enabled = false;
         girlIsActive = true;
