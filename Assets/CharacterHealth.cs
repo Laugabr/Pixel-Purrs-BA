@@ -10,7 +10,7 @@ public class CharacterHealth : MonoBehaviour
     public float respawnTime = 5f;
     Transform _character;
     Vector2 startPos;
-    Vector2 currentPos;
+    Vector2 deathPosition;
     public GameObject girl;
     public GameObject cat;
     public GirlMovement girlControler;
@@ -31,9 +31,9 @@ public class CharacterHealth : MonoBehaviour
 
     private void Death()
     {
-        isAlive = false;
+        body.velocity = new Vector2(0f, 0f);
+        _character.transform.position = deathPosition;
         StartCoroutine(RespawnT());
-        
     }
 
     private IEnumerator RespawnT()
@@ -43,7 +43,6 @@ public class CharacterHealth : MonoBehaviour
     }
     public virtual void Respawn()
     {
-       
         isAlive = true;
         transform.position = startPos;
     }
@@ -53,10 +52,19 @@ public class CharacterHealth : MonoBehaviour
     {
         if (collision.CompareTag("Spikes")) 
         {
-            body.velocity.x = 0f;
+            deathPosition = _character.transform.position;
+            isAlive = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (isAlive == false)
+        {
             Death();
         }
     }
+
 
 
 

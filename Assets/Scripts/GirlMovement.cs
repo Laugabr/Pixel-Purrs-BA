@@ -7,46 +7,75 @@ public class GirlMovement : CharacterMovement
     public Transform _girlTransform;
     public Animator _animator;
     public SpriteRenderer _spriteRenderer;
-    private bool isGrabbingWall;
+    
     public bool hitRightWall;
     public bool hitLefttWall;
     public bool canWallJump;
     public float wallgrabBufferTime = 0.1f;
     public float wallgrabBufferCounter;
     public CharacterHealth charHealth;
-    private bool isAlivv;
-    bool _isMovementEnabled;
+
+    [Header("Wall Sliding Settings")]
+    [SerializeField] private bool _isWallSliding;
+    [SerializeField] float _wallSlidingSpeed;
+    [SerializeField] float speedY;
+
     protected override void Start()
     {
         base.Start();
-        _isMovementEnabled = true;
         charHealth.isAlive = true;
         charHealth = gameObject.GetComponent<CharacterHealth>();
-
-        isGrabbingWall = false;      
+        _isWallSliding = false;      
         _girlTransform.rotation = Quaternion.Euler(0f,0f,0f);
     }
     protected override void Update()
     {
         base.Update();
-       if (_isMovementEnabled)
-        {
+       
             HorizontalMovement();
             Jump();
             Dash();
-        } 
-        WallGrab();
         Animator();
-        isAlivv = charHealth.isAlive;
+        WallSlide();
+        WallGrabing();
     }
-    
+
+    public bool IsTouchingWall()
+    {
+        return Physics2D.OverlapCapsule(wallCheck.position, new Vector2(1f, 0.6f), CapsuleDirection2D.Vertical, 0, wallLayer);
+    }
+
+
+    private void WallSlide()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+
+        if (IsTouchingWall() && !IsGrounded() && horizontal != 0f) //si toca la pared, no esta tocando el piso, y si esta recibiendo un Input horizontal (si sigue presionando contra la pared)
+        {
+            _isWallSliding = true; // se esta deslizando por la pared
+            body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -_wallSlidingSpeed, float.MaxValue)); //limitamos la velocidad en y a ese valor
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                _isWallSliding = false;
+
+                WallJump();
+            }
+        }
+        else
+        {
+            _isWallSliding= false;
+        }
+
+    }
+
     public void Animator()
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
         _animator.SetFloat("movement", speedX * speed);
         _animator.SetBool("startedDash", startDash);
-        _animator.SetBool("grounded", isGrounded());
+        _animator.SetBool("grounded", IsGrounded());
         _animator.SetFloat("yVelocity", body.velocity.y);
         _animator.SetFloat("xVelocity", body.velocity.x);
         _animator.SetBool("isDashing", isDashing);
@@ -54,89 +83,50 @@ public class GirlMovement : CharacterMovement
         {
             _animator.SetBool("Facing Right", isFacingRight);
         }
+
         else if (isFacingRight == false)
         {
             _animator.SetBool("Facing Right", isFacingRight = false);
         }
         _animator.SetBool("isAlive", charHealth.isAlive);
+        _animator.SetBool("isGrabingWall", IsTouchingWall());
         
     }
-    public void DisableMovement()
+   
+       private void WallGrabing()
     {
-        _isMovementEnabled = false;
-        body.velocity = Vector2.zero; // Para asegurarse de que esté quieto
-    }
-
-    public void EnableMovement()
-    {
-        _isMovementEnabled = true;
-    }
-
-    private void WallGrab()
-    {
-        if (!isGrabbingWall)
+        if (IsTouchingWall() && Input.GetKey(KeyCode.Z))
         {
-            return;
-        }
-
-
-
-    }
-
-
-
-    /*
-    private void WallGrab()
-    {
-        hitRightWall = Physics2D.Raycast(_girlTransform.position, Vector2.right, wallRaycastDistance, groundLayer);
-        hitLefttWall = Physics2D.Raycast(_girlTransform.position, Vector2.left, wallRaycastDistance, groundLayer);
-
-        if (Input.GetKey(KeyCode.Z))
-        {
-            wallgrabBufferCounter = wallgrabBufferTime;
-        }
-        else
-        {   
-            wallgrabBufferCounter -= Time.deltaTime;
-        }  
-
-        if ((hitLefttWall == true || hitRightWall == true) && wallgrabBufferCounter > 0f)
-        {
-            isGrabbingWall = true;
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y * Input.GetAxis("Vertical"));
-            canWallJump = true;
-            wallgrabBufferCounter = 0f;
+            //float moveInput = Input.GetAxis("Vertical");
+            //speedY = Mathf.Lerp(body.velocity.x, lerpAmount, speedY);
+            body.velocity = new Vector2(0f, 0f);
+            _isWallSliding = false;
             if (Input.GetButtonDown("Jump"))
             {
-                isGrabbingWall = false;
-                body.constraints = RigidbodyConstraints2D.None;
-                body.constraints = RigidbodyConstraints2D.FreezeRotation;
                 WallJump();
             }
+            if (Input.GetButton("Dash"))
+            {
+                Dash();
+            }
         }
-        else if (Input.GetKey(KeyCode.Z))
-        {
-            isGrabbingWall = false;
-            body.gravityScale = 2;
-            body.constraints = RigidbodyConstraints2D.None;
-            body.constraints = RigidbodyConstraints2D.FreezeRotation;
-            canWallJump = false;
-        }
-        // Si hay una pared a la izquierda o derecha y el jugador presiona "Z", se agarra
-
+        
     }
-    */
+
     private void WallJump()
     {
-        if (isGrabbingWall == true)
-        
-        if (hitLefttWall == true)
+        bool touchingRightWall = Physics2D.Raycast(wallCheck.position, transform.right, 1f, wallLayer);
+        bool touchingLeftWall = Physics2D.Raycast(wallCheck.position, transform.right, 1f, wallLayer);
+
+
+        if (touchingRightWall == true)
         {
-            body.AddForce(Vector2.right * jumpPower, ForceMode2D.Impulse);
+            body.AddForce(new Vector2 (1, 1) * jumpPower, ForceMode2D.Impulse);
         }
-        if (hitRightWall == true)
+
+        if (touchingLeftWall == true)
         {
-            body.AddForce(Vector2.left * jumpPower, ForceMode2D.Impulse);
+            body.AddForce(new Vector2(-1, 1) * jumpPower, ForceMode2D.Impulse);
         }
     }
    

@@ -47,30 +47,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9425e3983afa643b5e76379aa9eff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   lerpAmount: 12
   jumpMultiplier: 3
   jumpPower: 12
   jumpTime: 12
   fallMultiplier: 2
   lowJumpMultiplier: 0.5
+  doubleJump: 0
+  grounded: 0
   _jumpBufferTime: 0.2
   _jumpBufferCounter: 0
-  hDrag: 0
   groundCheck: {fileID: 5881995398279462146}
   wallCheck: {fileID: 0}
+  _girlMovement: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
-  wallRaycastDistance: 0.6
+  switchChar: {fileID: 0}
+  girl: {fileID: 0}
+  dashingVelocity: 20
+  dashingTime: 0.1
   _girlTransform: {fileID: 8681769860881996008}
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   hitRightWall: 0
   hitLefttWall: 0
   canWallJump: 0
   wallgrabBufferTime: 0.1
   wallgrabBufferCounter: 0
+  charHealth: {fileID: 0}
+  _isWallSliding: 0
+  _wallSlidingSpeed: 0
+  speedY: 0
 --- !u!50 &3179960332929263751
 Rigidbody2D:
   serializedVersion: 4
