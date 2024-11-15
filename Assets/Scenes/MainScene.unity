@@ -17723,7 +17723,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   switchChar: {fileID: 796908563}
-  girl: {fileID: 0}
+  girl: {fileID: 764599318}
+  CameraShake: {fileID: 1768206147}
   dashingVelocity: 15
   dashingTime: 0.1
   _animator: {fileID: 1908535038}
@@ -18620,6 +18621,7 @@ GameObject:
   - component: {fileID: 1768206144}
   - component: {fileID: 1768206143}
   - component: {fileID: 1768206146}
+  - component: {fileID: 1768206147}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -18735,6 +18737,18 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1768206147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768206142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670f4f23b0e132b40b705757c9e6a1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1908535034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8873891924931543611, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
@@ -18892,6 +18906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083326644}
   - component: {fileID: 2083326643}
+  - component: {fileID: 2083326645}
   m_Layer: 1
   m_Name: Virtual Camera (1)
   m_TagString: Untagged
@@ -18954,6 +18969,18 @@ Transform:
   - {fileID: 2045868207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.237, y: -1.635, z: 0}
+--- !u!114 &2083326645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083326642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670f4f23b0e132b40b705757c9e6a1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3103533864595151300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19143,6 +19170,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4958752149971955131, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 1768206144}
+    - target: {fileID: 4958752149971955131, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
       propertyPath: speedY
       value: 3
       objectReference: {fileID: 0}
@@ -19178,6 +19209,10 @@ PrefabInstance:
       propertyPath: switchChar
       value: 
       objectReference: {fileID: 796908563}
+    - target: {fileID: 4958752149971955131, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
+      propertyPath: CameraShake
+      value: 
+      objectReference: {fileID: 1768206147}
     - target: {fileID: 4958752149971955131, guid: 67d2929cb9e097645b0a7e1e050ec303, type: 3}
       propertyPath: hitLefttWall
       value: 0

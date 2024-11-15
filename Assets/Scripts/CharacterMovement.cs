@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UIElements;
+using DG.Tweening;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class CharacterMovement : MonoBehaviour
     public CharacterSwitch switchChar;
     protected Rigidbody2D body;
     public GameObject girl;
+    public CameraShake CameraShake;
 
 
     [Header("Dash Settings")]
@@ -185,6 +187,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (isDashing) //movimiento del dash
         {
+            CameraShake.OnShake(1f, 4f);
             body.velocity = _dashingDir.normalized * dashingVelocity;
             startDash = false;
            
@@ -207,6 +210,7 @@ public class CharacterMovement : MonoBehaviour
        ;
     }
 
+ 
 
     private void MaxVelocity()
     {

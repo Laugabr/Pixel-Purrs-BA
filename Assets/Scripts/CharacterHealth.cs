@@ -38,7 +38,7 @@ public class CharacterHealth : MonoBehaviour
 
     private IEnumerator RespawnT()
     {
-        yield return new WaitForSeconds(respawnTime);
+        yield return new WaitForSeconds(respawnTime);   
         Respawn();
     }
     public virtual void Respawn()
