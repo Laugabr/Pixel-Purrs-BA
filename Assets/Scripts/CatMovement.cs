@@ -43,7 +43,7 @@ public class CatMovement : CharacterMovement
 
 
 
-    public void Animator()
+    public void Animator() //Funcion de animator distinta con la chica porque 
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 

@@ -9,7 +9,7 @@ public class CharacterHealth : MonoBehaviour
     public LayerMask spikesLayer;
     public float respawnTime = 5f;
     Transform _character;
-    Vector2 startPos;
+    Vector2 checkPoint  ;
     Vector2 deathPosition;
     public GameObject girl;
     public GameObject cat;
@@ -23,7 +23,7 @@ public class CharacterHealth : MonoBehaviour
     private void Start()
     {
         isAlive = true;
-        startPos = transform.position;
+        checkPoint = transform.position;
         _character = GetComponent<Transform>();
         body = GetComponent<Rigidbody2D>();
     }
@@ -44,9 +44,13 @@ public class CharacterHealth : MonoBehaviour
     public virtual void Respawn()
     {
         isAlive = true;
-        transform.position = startPos;
+        transform.position = checkPoint;
     }
 
+    public void UpdateCheckPoint(Vector2 pos)
+    {
+        checkPoint = pos;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

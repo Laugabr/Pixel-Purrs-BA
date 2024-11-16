@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class CameraShake : MonoBehaviour
 {
-    public static CameraShake Instance;
+    public static CameraShake Instance; //puse un puglin DOTWEENS para el camara shake
 
     private void Awake() => Instance = this; // instanciamos
 

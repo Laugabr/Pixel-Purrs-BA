@@ -5,16 +5,26 @@ using UnityEngine;
 
 public class CharacterSwitch : MonoBehaviour
 {
+    [Header("Girl")]
     public GirlMovement girlControler;
-    public CatMovement catControler;
-    public CharacterMovement dashingTime;
-    public GameObject girl;
-    public GameObject cat;
-    public bool girlIsActive = true;
-    public CharacterMovement finishedDashing;
-    public CharacterMovement startedDash;
+
     public Transform girlTransform;
+
+    public bool girlIsActive = true;
+
+    public GameObject girl;
+
+    [Header("Cat")]
+    public GameObject cat;
+
     public Transform catTransform;
+
+    public CatMovement catControler;
+
+    [Header("General")]
+
+    public CharacterMovement charMovement;
+    
     public CharacterHealth charHealth;
     // Update is called once per frame
     private void Start() //empezamos como la chica
@@ -25,10 +35,12 @@ public class CharacterSwitch : MonoBehaviour
         girl.SetActive(true);
         cat.SetActive(false);
         charHealth = gameObject.GetComponent<CharacterHealth>();
+        charMovement = gameObject.GetComponent<CharacterMovement>();   
+
     }
     private void Update()
     {
-        if (startedDash)
+        if (charMovement.startDash)
         {
             SwitchCharacter();
         }
