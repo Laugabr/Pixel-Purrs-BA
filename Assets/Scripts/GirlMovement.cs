@@ -16,7 +16,6 @@ public class GirlMovement : CharacterMovement
     public CharacterHealth charHealth;
 
     [Header("Wall Sliding Settings")]
-    [SerializeField] private bool _isWallSliding;
     [SerializeField] float _wallSlidingSpeed;
     [SerializeField] float speedY;
 
@@ -25,7 +24,6 @@ public class GirlMovement : CharacterMovement
         base.Start();
         charHealth.isAlive = true;
         charHealth = gameObject.GetComponent<CharacterHealth>();
-        _isWallSliding = false;      
         _girlTransform.rotation = Quaternion.Euler(0f,0f,0f);
     }
     protected override void Update()
@@ -52,21 +50,13 @@ public class GirlMovement : CharacterMovement
 
         if (IsTouchingWall() && !IsGrounded() && horizontal != 0f) //si toca la pared, no esta tocando el piso, y si esta recibiendo un Input horizontal (si sigue presionando contra la pared)
         {
-            _isWallSliding = true; // se esta deslizando por la pared
             body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -_wallSlidingSpeed, float.MaxValue)); //limitamos la velocidad en y a ese valor
 
             if (Input.GetButtonDown("Jump"))
             {
-                _isWallSliding = false;
-
                 WallJump();
             }
         }
-        else
-        {
-            _isWallSliding= false;
-        }
-
     }
 
     public void Animator()
@@ -100,7 +90,6 @@ public class GirlMovement : CharacterMovement
             //float moveInput = Input.GetAxis("Vertical");
             //speedY = Mathf.Lerp(body.velocity.x, lerpAmount, speedY);
             body.velocity = new Vector2(0f, 0f);
-            _isWallSliding = false;
             if (Input.GetButtonDown("Jump"))
             {
                 WallJump();

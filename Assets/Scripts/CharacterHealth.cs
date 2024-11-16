@@ -17,11 +17,12 @@ public class CharacterHealth : MonoBehaviour
     public CatMovement catControler;
     public CharacterSwitch charSwitch;
     Rigidbody2D body;
-
    
+
     // Update is called once per frame
     private void Start()
     {
+
         isAlive = true;
         checkPoint = transform.position;
         _character = GetComponent<Transform>();
@@ -56,6 +57,7 @@ public class CharacterHealth : MonoBehaviour
     {
         if (collision.CompareTag("Spikes")) 
         {
+            SceneData.muertes++;
             deathPosition = _character.transform.position;
             isAlive = false;
         }
@@ -69,7 +71,10 @@ public class CharacterHealth : MonoBehaviour
         }
     }
 
-
+    public static class SceneData
+    {
+        public static int muertes;
+    }
 
 
 }
