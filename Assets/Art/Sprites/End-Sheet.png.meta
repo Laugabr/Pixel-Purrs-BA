@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5502148bd6c6de446898806cb0781747
+guid: 37727df0865b1ec409a984320e74a97f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carteles-Sheet_0
+      name: End-Sheet_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 27
-        height: 32
+        width: 41
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94e71a77d71ed7642a8f870b36c95200
-      internalID: -668009247
+      spriteID: e5716ba5844cdb445add92a1afe46daa
+      internalID: -1928743411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carteles-Sheet_1
+      name: End-Sheet_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 41
         y: 0
-        width: 27
-        height: 32
+        width: 41
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cdd87d38d9bdc94d91658e40dbbe986
-      internalID: -1936889082
+      spriteID: 00ccfd5ffe1db9c4dace1dbf644a9066
+      internalID: 1794475248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Carteles-Sheet_2
+      name: End-Sheet_2
       rect:
         serializedVersion: 2
-        x: 71
+        x: 82
         y: 0
-        width: 27
-        height: 32
+        width: 41
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +153,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d7763bbf16200a40a9b0348a1af0a1a
-      internalID: 813889860
+      spriteID: 89e72f318002eb644b32a2622ea3585e
+      internalID: 858375574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: End-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 0
+        width: 41
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b76e5e4936a2a8b418219fefef5b9f9b
+      internalID: -262177609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: End-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 0
+        width: 41
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23330c32852ccee4db390b7aec6f6f1d
+      internalID: 1742746981
       vertices: []
       indices: 
       edges: []
@@ -170,9 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Carteles-Sheet_0: -668009247
-      Carteles-Sheet_1: -1936889082
-      Carteles-Sheet_2: 813889860
+      End-Sheet_0: -1928743411
+      End-Sheet_1: 1794475248
+      End-Sheet_2: 858375574
+      End-Sheet_3: -262177609
+      End-Sheet_4: 1742746981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
