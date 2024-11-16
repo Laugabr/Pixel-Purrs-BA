@@ -42,7 +42,7 @@ public class GirlMovement : CharacterMovement
 
     public bool IsTouchingWall()
     {
-        return Physics2D.OverlapCapsule(wallCheck.position, new Vector2(1f, 0.6f), CapsuleDirection2D.Vertical, 0, wallLayer);
+        return Physics2D.OverlapCapsule(wallCheck.position, new Vector2(0.7f, 0.4f), CapsuleDirection2D.Vertical, 0, wallLayer);
     }
 
 

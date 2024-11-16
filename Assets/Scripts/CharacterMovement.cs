@@ -67,6 +67,8 @@ public class CharacterMovement : MonoBehaviour
 
     public CameraShake CameraShake;
 
+    public CharacterHealth characterHealth;
+
 
     [Header("Dash Settings")]
     public bool startDash;
@@ -94,6 +96,7 @@ public class CharacterMovement : MonoBehaviour
         vecGravity = new Vector2(0, -Physics2D.gravity.y);
         float moveInput = Input.GetAxis("Horizontal");
         body = GetComponent<Rigidbody2D>();
+        characterHealth = GetComponent<CharacterHealth>();
         HorizontalMovement();
         isFacingRight = true;
         canDash = true; //empieza pudiendo dashear
@@ -184,7 +187,7 @@ public class CharacterMovement : MonoBehaviour
     
     public bool IsGrounded()
     {
-        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.2f, 0.5f), CapsuleDirection2D.Vertical, 0, groundLayer);
+        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.2f, 0.4f), CapsuleDirection2D.Vertical, 0, groundLayer);
     }
 
     
@@ -193,7 +196,7 @@ public class CharacterMovement : MonoBehaviour
     {
         var dashInput = Input.GetButtonDown("Dash");
         finishedDashing = false;
-        if (dashInput && canDash) //si tocas el boton de dash ("x")
+        if (dashInput && canDash && characterHealth.isAlive) //si tocas el boton de dash ("x")
         {
             isDashing = true;   
             canDash = false;
