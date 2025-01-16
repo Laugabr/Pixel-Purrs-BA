@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour
 {
+    [SerializeField] ParticleSystem _particleSystem;
     public bool isAlive;
     public Transform spikesCheck;
     public LayerMask spikesLayer;
@@ -13,6 +14,7 @@ public class CharacterHealth : MonoBehaviour
     Vector2 deathPosition;
     public GameObject girl;
     public GameObject cat;
+    bool girlIsActive;
     public GirlMovement girlControler;
     public CatMovement catControler;
     public CharacterSwitch charSwitch;
@@ -39,8 +41,13 @@ public class CharacterHealth : MonoBehaviour
 
     private IEnumerator RespawnT()
     {
-        yield return new WaitForSeconds(respawnTime);   
-        Respawn();
+        yield return new WaitForSeconds(respawnTime);
+        
+            girlControler.enabled = true;
+            catControler.enabled = false;
+            girlIsActive = true;
+            girl.SetActive(true);
+            Respawn();
     }
     public virtual void Respawn()
     {
@@ -60,6 +67,9 @@ public class CharacterHealth : MonoBehaviour
             SceneData.muertes++;
             deathPosition = _character.transform.position;
             isAlive = false;
+            _particleSystem.Play();
+            girl.SetActive(false);
+            cat.SetActive(false);
         }
     }
 

@@ -34,7 +34,7 @@ public class GirlMovement : CharacterMovement
             Jump();
             Dash();
         Animator();
-        WallSlide();
+        
         WallGrabing();
     }
 
@@ -54,7 +54,7 @@ public class GirlMovement : CharacterMovement
 
             if (Input.GetButtonDown("Jump"))
             {
-                WallJump();
+               // WallJump();
             }
         }
     }
@@ -85,15 +85,10 @@ public class GirlMovement : CharacterMovement
    
        private void WallGrabing()
     {
-        if (IsTouchingWall() && Input.GetKey(KeyCode.Z))
-        {
-            //float moveInput = Input.GetAxis("Vertical");
-            //speedY = Mathf.Lerp(body.velocity.x, lerpAmount, speedY);
+        if (IsTouchingWall() && Input.GetKey(KeyCode.Z) && IsGrounded() == false)
+        { 
             body.velocity = new Vector2(0f, 0f);
-            if (Input.GetButtonDown("Jump"))
-            {
-                WallJump();
-            }
+
             if (Input.GetButton("Dash"))
             {
                 Dash();
@@ -102,21 +97,4 @@ public class GirlMovement : CharacterMovement
         
     }
 
-    private void WallJump()
-    {
-        bool touchingRightWall = Physics2D.Raycast(wallCheck.position, transform.right, 1f, wallLayer);
-        bool touchingLeftWall = Physics2D.Raycast(wallCheck.position, transform.right, 1f, wallLayer);
-
-
-        if (touchingRightWall == true)
-        {
-            body.AddForce(new Vector2 (1, 1) * jumpPower, ForceMode2D.Impulse);
-        }
-
-        if (touchingLeftWall == true)
-        {
-            body.AddForce(new Vector2(-1, 1) * jumpPower, ForceMode2D.Impulse);
-        }
-    }
-   
 }

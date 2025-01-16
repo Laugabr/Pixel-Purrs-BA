@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -9,31 +9,30 @@ public class CatMovement : CharacterMovement
 
     public Animator _animator;
     public Transform catTransform;
-    public CharacterHealth charHealth;
-
-    
+    public CharacterHealth charHealth;    
     protected override void Start()
     {
         base.Start();
         charHealth.isAlive = true;
         charHealth = gameObject.GetComponent<CharacterHealth>();
-        catTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        catTransform.rotation = Quaternion.Euler(0f, 0f, 0f);       
     }
     protected override void Update()
     {
         base.Update();
         Animator();
+        if (coyoteTimeCounter > 0f) //si toca el piso puede hacer un doble salto de nuevo
+        {
+            doubleJump = true;
+        }
+
     }
 
 
     public override void Jump()
     {
         base.Jump();
-        if (IsGrounded()) //si toca el piso puede hacer un doble salto de nuevo
-        {
-            doubleJump = true;
-        }
-
+        
         if (IsGrounded() && !Input.GetButton("Jump")) //para que no haga el salto doble desde el suelo
         {
             doubleJump = false;

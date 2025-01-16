@@ -42,6 +42,8 @@ public class CharacterMovement : MonoBehaviour
 
     protected float jumpCounter;
 
+    public float coyoteTimeCounter;
+    float coyoteTime = 0.35f;
 
     [Header("References")]
 
@@ -90,35 +92,55 @@ public class CharacterMovement : MonoBehaviour
     protected virtual void Start()
     {
         vecGravity = new Vector2(0, -Physics2D.gravity.y);
+
         float moveInput = Input.GetAxis("Horizontal");
+
         body = GetComponent<Rigidbody2D>();
+
         characterHealth = GetComponent<CharacterHealth>();
+
         HorizontalMovement();
+
         isFacingRight = true;
+
         canDash = true; //empieza pudiendo dashear
+
         _girlMovement = gameObject.GetComponent<GirlMovement>(); //tomamos el componente del movimiento de la chica
+
         maxSpeed = 23f; //seteamos las velocidades maximas que puede tomar el personaje, para evitar que haya excesos con las fisicas
+
         maxYSpeed = 15;
     }
     protected virtual void Update()
     {
         HorizontalMovement();
+
         FacingDirections();
+
         Jump();
+
         Dash();
+
         MaxVelocity();
+
     }
+
     public void HorizontalMovement() // Movimiento horizontal básico
     {
         float moveInput = Input.GetAxis("Horizontal");
+
         speed = Mathf.Lerp(body.velocity.y, lerpAmount, speed);
+
         body.velocity = new Vector2(moveInput * speed, body.velocity.y);
+
     }
 
     public virtual void FacingDirections()
     {
         // Cambia la dirección del personaje según el input
+
         if (body.velocity.x < 0 && isFacingRight)
+
         {
             isFacingRight = false;
         }
@@ -140,13 +162,23 @@ public class CharacterMovement : MonoBehaviour
             _jumpBufferCounter -= Time.deltaTime;
         }
 
-        if (_jumpBufferCounter > 0f && (IsGrounded() || doubleJump == true)) 
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if (_jumpBufferCounter > 0f && (coyoteTimeCounter > 0f || doubleJump == true)) 
         {
             body.velocity = new Vector2(body.velocity.x, 0);
             body.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); // un lance para arriba 
             isJumping = true; // marcar que esta saltando
             jumpCounter = 0; // tiempo de salto igual a cero
             _jumpBufferCounter = 0f; //se el buffer
+            coyoteTimeCounter = 0f;
             if (doubleJump) //si puede hacer double jump, puede hacer otro salto
             {
                 doubleJump = false;
@@ -183,7 +215,7 @@ public class CharacterMovement : MonoBehaviour
     
     public bool IsGrounded()
     {
-        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.2f, 0.4f), CapsuleDirection2D.Vertical, 0, groundLayer);
+        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.1f, 0.4f), CapsuleDirection2D.Vertical, 0, groundLayer);
     }
 
     
@@ -201,10 +233,12 @@ public class CharacterMovement : MonoBehaviour
 
             if (_dashingDir == new Vector2(0,0)) //si lo tocas mientras no insertas ningun input, la direccion depende de que a que direccion estas viendo
             {
+
                 if (isFacingRight == true)
                 {
                     _dashingDir = new Vector2(1, 0);
                 }
+
                 if (isFacingRight == false)
                 {
                     _dashingDir = new Vector2(-1, 0);
@@ -221,22 +255,29 @@ public class CharacterMovement : MonoBehaviour
             body.velocity = _dashingDir.normalized * dashingVelocity;
             startDash = false;
            
-            body.gravityScale = 0f; // le sacamos la gravedad para mejorar el dash
+           body.gravityScale = 0f; // le sacamos la gravedad para mejorar el dash
             return;
         }
+
         if (IsGrounded() ||(switchChar.girlIsActive == true && _girlMovement.IsTouchingWall() == true)) //cada vez que toca el piso se resetea el dash, o si sos la chica al tocar una pared
         {
             canDash = true;
         }   
+
     }
     private IEnumerator StopDashing()
     {
 
         yield return new WaitForSeconds(0.2f); //esperamos a que pase la duracion del dash
+
         isDashing = false; //que pasa despues de ese tiempo
+
         finishedDashing = true;
+
         GetComponent<CharacterSwitch>().SwitchCharacter();
+
         body.gravityScale = _originalGravity; // le devolvemos la gravedad
+
     }
 
  
@@ -246,6 +287,7 @@ public class CharacterMovement : MonoBehaviour
         Vector2 velocity = body.velocity;
 
         // Limitar la velocidad en el eje X
+
         if (Mathf.Abs(velocity.x) > maxSpeed)
         {
             velocity.x = Mathf.Sign(velocity.x) * maxSpeed;
